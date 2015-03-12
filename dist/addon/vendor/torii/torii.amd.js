@@ -1,6 +1,6 @@
 /**
  * Torii version: 0.2.3
- * Built: Thu Mar 12 2015 11:24:45 GMT-0400 (EDT)
+ * Built: Thu Mar 12 2015 16:42:08 GMT-0400 (EDT)
  */
 define("torii/adapters/application", 
   ["exports"],
@@ -716,6 +716,10 @@ define("torii/providers/facebook-connect",
         $.getScript('//connect.facebook.net/en_US/sdk.js');
       }).then(function(){
         window.fbAsyncInit = original;
+        if (window.fbAsyncInit) {
+          window.fbAsyncInit.hasRun = true;
+          window.fbAsyncInit();
+        }
       });
 
       return fbPromise;
